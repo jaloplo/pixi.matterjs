@@ -1,9 +1,3 @@
-/**
-* The `Matter.Pixi.Render` module is the implementation of a renderer using PixiJS library.
-*
-* @class Render
-*/
-
 var Render = {};
 
 (function() {
@@ -62,10 +56,12 @@ var Render = {};
 
 
     Render.sprite = function(render, body) {
+        var animation = body.render.sprite.animation;
         var resource = body.render.sprite.resource;
         var texture = body.render.sprite.texture;
 
         var pixi = {};
+
         if(resource) {
             if(texture) {
                 pixi = new PIXI.Sprite(Loader.resources[resource].textures[texture]);
@@ -87,6 +83,12 @@ var Render = {};
 
         return pixi;
     };
+
+
+    Render.remove = function(render, body) {
+        render.app.stage.removeChild(render.sprites[body.id]);
+        delete render.sprites[body.id];
+    }
 
 
     Render.run = function(render, engine) {
@@ -118,5 +120,10 @@ var Render = {};
 
         return render;
     }
+
+    Render.stop = function(render) {
+        _cancelAnimationFrame(render.frameRequestId);
+        render.app.stop();
+    };
 
 })();
