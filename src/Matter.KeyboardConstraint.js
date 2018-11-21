@@ -11,18 +11,6 @@ let KeyboardConstraint = (function() {
                 KeyboardConstraint.update(keyboardConstraint);
             });
 
-            Events.on(keyboard.engine, 'collisionActive', function(event) {
-                // if(event.pairs.length < 1) 
-                //     return;
-
-                // let player = null;
-                // if(event.pairs[0].bodyA.label === 'player') {
-                //     player = Matter.Composite.get(engine.world, event.pairs[0].bodyA.id);
-                // } else if(event.pairs[0].bodyB.label === 'player') {
-                //     player = Matter.Composite.get(engine.world, event.pairs[0].bodyB.id);
-                // }
-            });
-
             return keyboardConstraint;
         },
 
@@ -31,7 +19,7 @@ let KeyboardConstraint = (function() {
             let keys = keyboardConstraint.keyboard.keys;
 
             if(keys.indexOf('ArrowUp') !== -1) {
-                Matter.Body.setVelocity(body, { x: body.velocity.x, y: -5 });
+                Matter.Body.setVelocity(body, { x: body.velocity.x, y: -body.settings.jump_velocity });
             }
             if(keys.indexOf('ArrowRight') !== -1) {
                 Matter.Body.setVelocity(body, { x: 2, y: body.velocity.y });

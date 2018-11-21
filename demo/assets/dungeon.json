@@ -1,0 +1,193 @@
+{
+	"frames": {
+		"border.bottom": {
+			"frame": {"x": 16, "y": 0, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"border.step": {
+			"frame": {"x": 64, "y": 0, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"wall.1": {
+			"frame": {"x": 16, "y": 16, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"wall.lava.head": {
+			"frame": {"x": 64, "y": 16, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"wall.lava.bucket": {
+			"frame": {"x": 64, "y": 32, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"wall.poison.flag": {
+			"frame": {"x": 16, "y": 48, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"wall.poison": {
+			"frame": {"x": 64, "y": 80, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"border.point.bottomright": {
+			"frame": {"x": 0, "y": 112, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"border.point.bottomleft": {
+			"frame": {"x": 16, "y": 112, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"border.right": {
+			"frame": {"x": 0, "y": 128, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"border.left": {
+			"frame": {"x": 16, "y": 128, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"border.corner.bottomleft": {
+			"frame": {"x": 80, "y": 128, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"border.corner.bottomright": {
+			"frame": {"x": 64, "y": 128, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"treasure.chest": {
+			"frame": {"x": 240, "y": 224, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"poison.potion": {
+			"frame": {"x": 320, "y": 240, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+
+
+		"border.1": {
+			"frame": {"x": 16, "y": 0, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"floor.1": {
+			"frame": {"x": 16, "y": 64, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"ogre.1": {
+			"frame": {"x": 16, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"ogre.2": {
+			"frame": {"x": 48, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"ogre.3": {
+			"frame": {"x": 80, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"ogre.4": {
+			"frame": {"x": 112, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"ogre.5": {
+			"frame": {"x": 144, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"ogre.6": {
+			"frame": {"x": 176, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"ogre.7": {
+			"frame": {"x": 208, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"ogre.8": {
+			"frame": {"x": 240, "y": 320, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		}
+	},
+	"animations": {
+		"ogre": ["ogre.1", "ogre.2", "ogre.3", "ogre.4", "ogre.5", "ogre.6", "ogre.7", "ogre.8"]
+	},
+	"meta": {
+		"image": "dungeon.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 512,
+			"h": 512
+		},
+		"scale": "1"
+	}
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pixi.Render demo</title>
+        <script src="matter.min.js"></script>
+        <script src="pixi.min.js"></script>
+        <script src="Matter.Pixi.Render.js"></script>
+        <script src="Matter.Keyboard.js"></script>
+        <script src="Matter.KeyboardConstraint.js"></script>
+    </head>
+    <body>
+        <div id="pixi" style="display: inline;"></div>
+        <div id="flat" style="display: inline;"></div>
+        <script>
+            // Shortcuts
+            var Bodies = Matter.Bodies,
+                Common = Matter.Common,
+                Composite = Matter.Composite,
+                Engine = Matter.Engine,
+                Events = Matter.Events,
+                Runner = Matter.Runner,
+                World = Matter.World;
+
+            var scene = [258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 225, 2, 2, 2, 226, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 257, 34, 34, 34, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 225, 2, 2, 2, 2, 226, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 257, 34, 34, 34, 34, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 257, 34, 34, 34, 34, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 225, 2, 2, 2, 2, 226, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 34, 34, 34, 34, 258, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 34, 34, 34, 34, 258, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 225, 2, 2, 2, 5, 226, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 225, 2, 292, 34, 34, 98, 38, 258, 0, 257, 258, 0, 0, 0, 0, 0, 0, 0, 0, 458, 458, 0, 0, 225, 2, 292, 34, 34, 34, 34, 34, 69, 258, 0, 257, 291, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 292, 34, 34, 34, 34, 34, 34, 34, 34, 291, 2, 292, 34, 34, 34, 165, 34, 34, 34, 34, 34, 34, 165, 34, 34, 34, 34, 34, 165, 34, 34, 34, 34, 34, 165, 34, 34];
+
+            var sceneItems = [{
+                    label: 'poison potion',
+                    position: { x: 320, y: 224 },
+                    render: {
+                        id: 468,
+                    }
+                }, {
+                    label: 'treasure chest',
+                    position: { x: 176, y: 48 },
+                    render: {
+                        id: 431,
+                    }
+                },
+            ];
+
+            var world = {
+                height: 304,
+                width: 400,
+            };
+
+            var demoEngine = Engine.create();
+
+            var render = Render.create({
+                target: document.getElementById('pixi'),
+                width: world.width,
+                height: world.height,
+            });
+            var flatRender = Matter.Render.create({
+                element: document.getElementById('flat'),
+                engine: demoEngine,
+                options: {
+                    width: world.width,
+                    height: world.height,
+                }});
+
+            Render.add(render, { name: 'atlas', url: 'dungeon.json' });
+
+            Events.on(render, 'afterLoaded', function() {
+
+                // Render all background objects as images
+                var background = new PIXI.Container();
+
+                for(var i = 0; i < scene.length; i++) {
+                    var x = (i % 25) * 16;
+                    var y = Math.floor(i / 25) * 16;
+                    var tileCode = scene[i]-1;
+                    var spriteName = '';
+                    switch(tileCode) {
+                        case 1: spriteName = 'border.bottom'; break;
+                        case 4: spriteName = 'border.step'; break;
+                        case 33: spriteName = 'wall.1'; break;
+                        case 37: spriteName = 'wall.lava.head'; break;
+                        case 68: spriteName = 'wall.lava.bucket'; break;
+                        case 97: spriteName = 'wall.poison.flag'; break;
+                        case 164: spriteName = 'wall.poison'; break;
+                        case 224: spriteName = 'border.point.bottomright'; break;
+                        case 225: spriteName = 'border.point.bottomleft'; break;
+                        case 256: spriteName = 'border.right'; break;
+                        case 257: spriteName = 'border.left'; break;
+                        case 290: spriteName = 'border.corner.bottomleft'; break;
+                        case 291: spriteName = 'border.corner.bottomright'; break;
+                    }
+
+                    if(spriteName !== '') {
+                        var sprite = new PIXI.Sprite(PIXI.loader.resources['atlas'].textures[spriteName]);
+                        sprite.x = x + 8;
+                        sprite.y = y + 8;
+                        sprite.anchor.set(0.5);
+                        background.addChild(sprite);
+                    }
+                }
+                render.app.stage.addChild(background);
+
+                // platforms
+                var platforms = Composite.create();
+                for(var i = 0; i < scene.length; i++) {
+                    var x = (i % 25) * 16;
+                    var y = Math.floor(i / 25) * 16;
+                    var tileCode = scene[i]-1;
+
+                    if(tileCode === 1) // border bottom
+                        Composite.add(platforms, Bodies.rectangle(x + 8, y + 15, 16, 2, { isStatic: true }));
+                    if(tileCode === 4) // border step
+                        Composite.add(platforms, Bodies.rectangle(x + 8, y + 14, 16, 4, { isStatic: true }));
+                    if(tileCode === 224) // border point bottom right
+                        Composite.add(platforms, Bodies.rectangle(x + 15, y + 15, 2, 2, { isStatic: true }));
+                    if(tileCode === 225) // border point bottom left
+                        Composite.add(platforms, Bodies.rectangle(x, y + 15, 2, 2, { isStatic: true }));
+                    if(tileCode === 256) // border right
+                        Composite.add(platforms, Bodies.rectangle(x + 15, y + 8, 2, 16, { isStatic: true }));
+                    if(tileCode === 257) // border left
+                        Composite.add(platforms, Bodies.rectangle(x, y + 8, 2, 16, { isStatic: true }));
+                    if(tileCode === 290) { // border corner bottom left
+                        Composite.add(platforms, Bodies.rectangle(x, y + 8, 2, 16, { isStatic: true }));
+                        Composite.add(platforms, Bodies.rectangle(x + 8, y + 15, 16, 2, { isStatic: true }));
+                    }
+                    if(tileCode === 291) { // border corner bottom right
+                        Composite.add(platforms, Bodies.rectangle(x + 15, y + 8, 2, 16, { isStatic: true }));
+                        Composite.add(platforms, Bodies.rectangle(x + 8, y + 15, 16, 2, { isStatic: true }));
+                    }
+                }
+                
+                Composite.add(demoEngine.world, platforms);
+
+                // items
+                var items = Composite.create();
+                for(var i = 0; i < sceneItems.length; i++) {
+                    var item = sceneItems[i];
+                    
+                    var textureName = '';
+                    if(item.render.id === 431) textureName = 'treasure.chest';
+                    if(item.render.id === 468) textureName = 'poison.potion';
+
+                    Composite.add(items, Bodies.rectangle(item.position.x, item.position.y, 16, 16, {
+                        label: item.label,
+                        render: {
+                            sprite: {
+                                resource: 'atlas',
+                                texture: textureName,
+                            }
+                        }
+                    }));
+                }
+                Composite.add(demoEngine.world, items);
+
+                // player
+                var player = Bodies.rectangle(50, 100, 32, 32, {
+                    label: 'player',
+                    inertia: Infinity,
+                    render: {
+                        sprite: {
+                            resource: 'atlas',
+                            texture: 'ogre.1',
+                        }
+                    },
+                    settings :{
+                        jump_velocity: 2,
+                    }
+                });
+                Composite.addBody(demoEngine.world, player);
+
+                let keyboard = Keyboard.create(demoEngine, document.body);
+                let keyboardConstraint = KeyboardConstraint.create(keyboard, player);
+
+                // collision detection
+                Events.on(demoEngine, 'afterUpdate', function() {
+                    var collisions = Matter.Query.collides(player, items.bodies);
+                    if(collisions.length > 0) {
+                        var item = collisions[0].bodyA;
+                        
+                        // increase jump capacity
+                        if(item.label === 'poison potion') {
+                            player.settings.jump_velocity *= 3;
+                            Render.remove(render, item);
+                            Composite.remove(demoEngine.world, item, true);
+                        }
+
+                        // win the game
+                        if(item.label === 'treasure chest') {
+                            Render.stop(render);
+                            Matter.Render.stop(flatRender);
+                        }
+                    }                    
+                });
+
+                // 
+                Render.run(render, demoEngine);
+                Matter.Render.run(flatRender, demoEngine);
+
+                Engine.run(demoEngine);
+            });
+        </script>
+    </body>
+</html>
