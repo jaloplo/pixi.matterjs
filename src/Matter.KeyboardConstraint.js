@@ -1,7 +1,5 @@
 let KeyboardConstraint = (function() {
 
-    var Common = Matter.Common;
-
     return {
         create : function(keyboard, options) {
             var defaults = {
@@ -9,9 +7,9 @@ let KeyboardConstraint = (function() {
                 actions: {},
             };
 
-            var constraint = Common.extend(defaults, options);
+            var constraint = Matter.Common.extend(defaults, options);
 
-            Events.on(keyboard.engine, 'beforeUpdate', function() {
+            Matter.Events.on(keyboard.engine, 'beforeUpdate', function() {
                 KeyboardConstraint.update(constraint);
             });
 

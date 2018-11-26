@@ -3,19 +3,14 @@ var Game = {};
 (function() {
 
     // Shortcuts
-    var Body = Matter.Body,
-        Bodies = Matter.Bodies,
-        Common = Matter.Common,
-        Composite = Matter.Composite,
-        Engine = Matter.Engine,
-        Events = Matter.Events,
-        Runner = Matter.Runner,
-        World = Matter.World;
+    var Bodies = Matter.Bodies,
+        Composite = Matter.Composite;
 
     Game.create = function(target) {
 
         var _game = {
             level: Level.One,
+            _status: 'CREATING',
         };
 
         // Physics engine creation
@@ -145,8 +140,27 @@ var Game = {};
                     }
                 });
 
+                // Texts
+                var win = Text.create('YOU WIN!!!');
+                win.visible = false;
+                win.x = 70;
+                win.y = 304/2;
+
+                var loose = Text.create('YOU LOOSE!!!');
+                loose.visible = false;
+                loose.x = 70;
+                loose.y = 304/2;
+
+                Render.addChildren(_game.render, win);
+                Render.addChildren(_game.render, loose);
+
                 // collision detection
-                Events.on(_game.physics, 'afterUpdate', function() {
+                Matter.Events.on(_game.physics, 'afterUpdate', function() {
+                    if(game.status === 'WIN' || game.status === 'LOOSE') {
+                        Render.stop(_game.render);
+                        return;
+                    }
+
                     var collisions = Matter.Query.collides(player.body, items.bodies);
                     if(collisions.length > 0) {
                         var item = collisions[0].bodyA.label === 'player' 
@@ -162,7 +176,8 @@ var Game = {};
 
                         // win the game
                         if(item.label === 'treasure chest') {
-                            // winText.visible = true;
+                            win.visible = true;
+                            _game.status = 'WIN';
                             Render.remove(_game.render, item);
                             Composite.remove(_game.physics.world, item, true);
                         }
@@ -173,27 +188,27 @@ var Game = {};
                         Player.stopJumping(player);
                     }
 
-                    if(player.body.position.y > 400) {
-                        // gameOverText.visible = true;
+                    if(player.body.position.y > 350) {
+                        loose.visible = true;
+                        _game.status = 'LOOSE';
                     }
                 });
 
                 Render.run(_game.render, _game.physics);
             });
-            
-        //     // Render.addChildren(_game.render, winText);
-        //     // Render.addChildren(_game.render, gameOverText);
 
         return _game;
     };
 
     Game.start = function(game) {
         Matter.Engine.run(game.physics);
+        game.status = 'STARTED';
         return game;
     };
 
     Game.stop = function(game) {
         Matter.Engine.stop(game.physics);
+        game.status = 'STOPPED';
         return game;
     };
 })();
