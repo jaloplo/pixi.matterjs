@@ -4,7 +4,6 @@
         <title>Pixi.Render demo</title>
         <script src="matter.min.js"></script>
         <script src="pixi.min.js"></script>
-        <script src="pixi-viewport.min.js"></script>
         <script src="Matter.Pixi.Render.js"></script>
         <script src="Matter.Keyboard.js"></script>
         <script src="Matter.KeyboardConstraint.js"></script>
@@ -15,36 +14,7 @@
     </head>
     <body>
         <div id="pixi" style="display: inline;"></div>
-        <div id="flat" style="display: inline;"></div>
         <script>
-                // var style = new PIXI.TextStyle({
-                //     fontFamily: 'Verdana',
-                //     fontSize: 36,
-                //     fontStyle: 'italic',
-                //     fontWeight: 'bold',
-                //     fill: ['#ffffff', '#00ff99'], // gradient
-                //     stroke: '#4a1850',
-                //     strokeThickness: 5,
-                //     dropShadow: true,
-                //     dropShadowColor: '#000000',
-                //     dropShadowBlur: 4,
-                //     dropShadowAngle: Math.PI / 6,
-                //     dropShadowDistance: 6,
-                //     wordWrap: true,
-                //     wordWrapWidth: 440
-                // });
-
-                // var winText = new PIXI.Text('¡¡¡GANASTE!!!', style);
-                // winText.x = 50;
-                // winText.y = 100;
-                // winText.visible = false;
-
-                // var gameOverText = new PIXI.Text('PERDISTE', style);
-                // gameOverText.x = 50;
-                // gameOverText.y = 100;
-                // gameOverText.visible = false;
-
-
             var game = Game.create(document.getElementById('pixi'));            
             Game.start(game);
         </script>
