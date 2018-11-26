@@ -1,32 +1,31 @@
 let KeyboardConstraint = (function() {
 
+    var Common = Matter.Common;
+
     return {
-        create : function(keyboard, body) {
-            let keyboardConstraint = {
+        create : function(keyboard, options) {
+            var defaults = {
                 keyboard: keyboard,
-                body: body,
+                actions: {},
             };
 
+            var constraint = Common.extend(defaults, options);
+
             Events.on(keyboard.engine, 'beforeUpdate', function() {
-                KeyboardConstraint.update(keyboardConstraint);
+                KeyboardConstraint.update(constraint);
             });
 
-            return keyboardConstraint;
+            return constraint;
         },
 
-        update: function(keyboardConstraint) {
-            let body = keyboardConstraint.body;
-            let keys = keyboardConstraint.keyboard.keys;
+        update: function(constraint) {
+            let keys = constraint.keyboard.keys;
 
-            if(keys.indexOf('ArrowUp') !== -1) {
-                Matter.Body.setVelocity(body, { x: body.velocity.x, y: -body.settings.jump_velocity });
-            }
-            if(keys.indexOf('ArrowRight') !== -1) {
-                Matter.Body.setVelocity(body, { x: 2, y: body.velocity.y });
-            }
-            if(keys.indexOf('ArrowLeft') !== -1) {
-                Matter.Body.setVelocity(body, { x: -2, y: body.velocity.y });
-            }
+            keys.forEach(function(key) {
+                if(constraint.actions[key]) {
+                    constraint.actions[key](constraint.body);
+                }
+            });
         },
     };
 })();

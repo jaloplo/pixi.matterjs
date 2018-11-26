@@ -24,12 +24,13 @@ var Render = {};
                                       || window.webkitCancelAnimationFrame || window.msCancelAnimationFrame;
     }
 
-
-    Render.add = function(render, resource) {
-        Loader.add(resource).load(function(res) {
-            Events.trigger(render, 'afterLoaded', res);
+    Render.assets = function(resource) {
+        return new Promise(function(resolve, reject) {
+            Loader.add(resource).load(function(res) {
+                resolve(res);
+            });
         });
-    };
+    }
 
     
     Render.addChildren = function(render, sprite) {
@@ -56,7 +57,6 @@ var Render = {};
 
 
     Render.sprite = function(render, body) {
-        var animation = body.render.sprite.animation;
         var resource = body.render.sprite.resource;
         var texture = body.render.sprite.texture;
 

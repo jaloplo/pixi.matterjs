@@ -99,7 +99,14 @@
 			"sourceSize": {"w":16,"h":16}
 		},
 		"poison.potion": {
-			"frame": {"x": 320, "y": 240, "w":16, "h":16},
+			"frame": {"x": 320, "y": 224, "w":16, "h":16},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+			"sourceSize": {"w":16,"h":16}
+		},
+		"red.potion": {
+			"frame": {"x": 288, "y": 240, "w":16, "h":16},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -120,6 +127,27 @@
 			"trimmed": false,
 			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 			"sourceSize": {"w":16,"h":16}
+		},
+		"knight.orange.1": {
+			"frame": {"x": 144, "y": 96, "w":16, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":32},
+			"sourceSize": {"w":16,"h":32}
+		},
+		"knight.pink.1": {
+			"frame": {"x": 144, "y": 64, "w":16, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":16,"h":32},
+			"sourceSize": {"w":16,"h":32}
+		},
+		"monster.1": {
+			"frame": {"x": 208, "y": 368, "w":32, "h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":16,"h":32}
 		},
 		"ogre.1": {
 			"frame": {"x": 16, "y": 320, "w":32, "h":32},
