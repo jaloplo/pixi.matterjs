@@ -15,8 +15,15 @@
     <body>
         <div id="pixi" style="display: inline;"></div>
         <script>
-            var game = Game.create(document.getElementById('pixi'));            
-            Game.start(game);
+            var canvas = document.getElementById('pixi');
+            
+            var game = Game.create(canvas, {
+                levels: [Level.One],
+            });
+
+            Matter.Events.on(game, 'afterCreate', function() {
+                Game.start(game);
+            });
         </script>
     </body>
 </html>
