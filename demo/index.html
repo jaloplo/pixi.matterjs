@@ -11,6 +11,7 @@
         <script src="level.js"></script>
         <script src="game.js"></script>
         <script src="text.js"></script>
+        <script src="Demo.Render.js"></script>
     </head>
     <body>
         <div id="pixi" style="display: inline;"></div>
@@ -18,12 +19,10 @@
             var canvas = document.getElementById('pixi');
             
             var game = Game.create(canvas, {
-                levels: [Level.One],
+                level: Level.One,
             });
 
-            Matter.Events.on(game, 'afterCreate', function() {
-                Game.start(game);
-            });
+            Game.start(game);
         </script>
     </body>
 </html>

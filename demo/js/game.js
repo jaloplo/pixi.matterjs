@@ -12,16 +12,18 @@ var Game = {};
         _game.physics = Matter.Engine.create();
 
         // Render engine creation
-        _game.render = Render.create({
-            target: target,
+        _game.render = DemoRender.create({
+            target: target
         });
-
-        Matter.Events.trigger(_game, 'afterCreate', null);
 
         return _game;
     };
 
     Game.start = function(game) {
+        DemoRender.level(game.render, game.level);
+        
+        Matter.Engine.run(game.physics);
+
         return game;
     }
 })();
